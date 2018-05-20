@@ -1,6 +1,5 @@
 package dm.boris.telephant.domain;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 
 @Entity
@@ -11,21 +10,22 @@ public class Message {
 
     private String text;
     private String tag;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name= "user_id")
-    private User author;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     public Message() {
     }
 
     public Message(String text, String tag, User user) {
-        this.author=user;
+        this.author = user;
         this.text = text;
         this.tag = tag;
     }
-    public String getAuthorName(){
-        return author !=null ? author.getUsername(): "<none>";
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
     }
 
     public User getAuthor() {
@@ -35,6 +35,7 @@ public class Message {
     public void setAuthor(User author) {
         this.author = author;
     }
+
     public void setText(String text) {
         this.text = text;
     }

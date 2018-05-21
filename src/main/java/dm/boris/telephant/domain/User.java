@@ -17,10 +17,16 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     public Set<Role> roles;
+
+
+    public boolean isAdmin() {
+        return roles.contains(Role.ADMIN);
+    }
 
     public Long getId() {
         return id;
@@ -86,4 +92,5 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }

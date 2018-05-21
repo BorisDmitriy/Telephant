@@ -1,6 +1,8 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<div>Hello, user</div>
-<a href="/main">Main page</a>
+      <div class="col">
+<h4>Hello guest</h4>
+<div>Telephant is a simple twitter clone</div>
+      </div>
 </@c.page>

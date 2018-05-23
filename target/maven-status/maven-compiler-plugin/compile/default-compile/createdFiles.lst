@@ -1,0 +1,13 @@
+dm\boris\telephant\controller\RegistrationController.class
+dm\boris\telephant\controller\ControllerUtils.class
+dm\boris\telephant\config\WebSecurityConfig.class
+dm\boris\telephant\config\MvcConfig.class
+dm\boris\telephant\controller\MainController.class
+dm\boris\telephant\Application.class
+dm\boris\telephant\domain\User.class
+dm\boris\telephant\repos\MessageRepo.class
+dm\boris\telephant\repos\UserRepo.class
+dm\boris\telephant\domain\Role.class
+dm\boris\telephant\domain\Message.class
+dm\boris\telephant\controller\UserController.class
+dm\boris\telephant\service\UserService.class

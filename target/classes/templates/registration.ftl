@@ -4,6 +4,7 @@
 <@c.page>
 <div class="mb-2">
     <h4>Add new user</h4>
+
 </div>
     ${message?ifExists}
     <@l.login "/registration" true/>

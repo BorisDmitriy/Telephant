@@ -5,7 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface MessageRepo extends CrudRepository<Message, Long> {
+//find the entire list of messages or search by tag
+public interface MessageRepos extends CrudRepository<Message, Long> {
 
     List<Message> findByTag(String tag);
 

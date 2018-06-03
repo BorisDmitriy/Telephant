@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+//ORM mor messages
 @Entity
 public class Message {
     @Id

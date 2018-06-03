@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 
+//ORM for users
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
@@ -21,15 +22,12 @@ public class User implements UserDetails {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
-
     private boolean active;
-
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     public Set<Role> roles;
-
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);

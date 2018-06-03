@@ -2,22 +2,15 @@ package dm.boris.telephant.controller;
 
 import dm.boris.telephant.domain.Role;
 import dm.boris.telephant.domain.User;
-import dm.boris.telephant.repos.UserRepo;
 import dm.boris.telephant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -26,6 +19,7 @@ public class UserController {
     @Autowired
     public UserService userService;
 
+    //open userList and userEditForm with ADMIN access
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
@@ -33,7 +27,6 @@ public class UserController {
 
         return "userList";
     }
-
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
@@ -43,6 +36,7 @@ public class UserController {
         return "userEdit";
     }
 
+    //change user name and role
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(
@@ -55,7 +49,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-
+    //open the profile tab and change the password if necessary
     @GetMapping("profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user){
         model.addAttribute("username",user.getUsername());

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,9 +23,10 @@ public class RegistrationController {
     public String registration (){
         return  "registration";
     }
+
+    //add a new user and validate incoming data for correctness
     @PostMapping("/registration")
     public  String addUser(
-
             @RequestParam("password2") String passwordConfirm,
             @Valid  User user,
             BindingResult bindingResult,

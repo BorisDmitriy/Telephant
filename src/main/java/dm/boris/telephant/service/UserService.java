@@ -1,30 +1,28 @@
 package dm.boris.telephant.service;
 
-import antlr.StringUtils;
 import dm.boris.telephant.domain.Role;
 import dm.boris.telephant.domain.User;
-import dm.boris.telephant.repos.UserRepo;
+import dm.boris.telephant.repos.UserRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//change or add data about user in database
 @Service
 public class UserService implements UserDetailsService {
-    @Autowired
-    private UserRepo userRepo;
 
+    @Autowired
+    private UserRepos userRepos;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepo.findByUsername(username);
+        User user = userRepos.findByUsername(username);
         if (user==null){
             throw  new UsernameNotFoundException("User not found");
         }
@@ -32,7 +30,7 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean addUser(User user) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+        User userFromDb = userRepos.findByUsername(user.getUsername());
 
         if(userFromDb!= null){
                 return false;
@@ -41,14 +39,14 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
 
-        userRepo.save(user);
+        userRepos.save(user);
 
         return true;
 
     }
 
     public List<User> findAll(){
-        return userRepo.findAll();
+        return userRepos.findAll();
     }
 
     public void saveUser(User user, String username, Map<String,String> form){
@@ -67,13 +65,13 @@ public class UserService implements UserDetailsService {
             }
         }
 
-        userRepo.save(user);
+        userRepos.save(user);
     }
 
     public void updateProfile(User user, String password) {
         if(!org.springframework.util.StringUtils.isEmpty(password)) {
             user.setPassword(password);
         }
-        userRepo.save(user);
+        userRepos.save(user);
     }
 }
